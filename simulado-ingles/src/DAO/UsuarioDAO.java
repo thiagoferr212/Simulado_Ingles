@@ -1,4 +1,4 @@
-package cadastro;
+package DAO;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import conexao.Conexao;
 import entity.Usuario;
 
-public class Cadastro {
+public class UsuarioDAO {
 
     public void cadastroUsuario(Usuario usuario){
 
