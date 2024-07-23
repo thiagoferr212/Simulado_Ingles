@@ -1,3 +1,5 @@
+package cadastro;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -5,8 +7,8 @@ import conexao.Conexao;
 import entity.Usuario;
 
 public class Cadastro {
-    
-    public void cadastrarUsuario(Usuario usuario){
+
+    public void cadastroUsuario(Usuario usuario){
 
         String sql = "INSERT INTO t_usuario (nome, sobrenome, email, senha) VALUES (?, ?, ?, ?)";
 
@@ -23,8 +25,9 @@ public class Cadastro {
             ps.close();
 
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
+            // TODO: handle exception
             e.printStackTrace();
         }
     }
+    
 }

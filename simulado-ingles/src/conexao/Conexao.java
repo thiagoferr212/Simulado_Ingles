@@ -9,7 +9,7 @@ public class Conexao {
     // A variavel criada do banco de dados é local,
     // caso o banco seja alterado de local para remoto,
     // não esquecer de fazer a alteração da variavel url.
-    private static final String url = "jdbc:,mysql://localhost:3306/simulado_ingles";
+    private static final String url = "jdbc:mysql://localhost:3306/simulado_ingles";
     private static final String user = "root";
     private static final String password = "1234";
 
