@@ -1,2 +1,2 @@
 # Simulado_Ingles
-Estra projeto trata-se de um simulado para a prática de verbos irregulares em inglês
+Este projeto trata-se de um simulado para praticar verbos irregulares em inglês.
