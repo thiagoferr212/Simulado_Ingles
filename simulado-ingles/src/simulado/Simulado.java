@@ -1,47 +1,54 @@
 package simulado;
+
+import DAO.VerboDAO;
+import entity.Verbo;
+import java.util.List;
 import java.util.Scanner;
 
-import DAO.UsuarioDAO;
-import DAO.VerboDAO;
-import entity.Usuario;
-import entity.Verbo;
-
 public class Simulado {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
+        VerboDAO verboDAO = new VerboDAO();
+        Verbo verbo  = verboDAO.buscarVerbo();
+
+        if (verbo != null) {
+            System.out.println("Id Verbo: " + verbo.getIdVerbo());
+            System.out.println("Verbo: " + verbo.getVerbo());
+
+            List<String> traducoes = verboDAO.buscarTraducao(verbo.getIdVerbo());
+
+            // Exibe as traduções
+            if (!traducoes.isEmpty()) {
+                System.out.println("Traduções: ");
+            
+                // Solicita a tradução do usuário
+                Scanner scanner = new Scanner(System.in);
+                System.out.print("Digite a tradução do verbo: ");
+                String respostaUsuario = scanner.nextLine();
+
+                // Verifica se a resposta do usuário está correta
+                if (traducoes.contains(respostaUsuario)) {
+                    System.out.println("Correto! A tradução está correta.");
+                } else {
+                    System.out.println("Incorreto. As traduções corretas são:");
+                    for (String traducao : traducoes) {
+                        System.out.println("- " + traducao);
+                    }
+                }
+                
+                scanner.close();
+            } else {
+                System.out.println("Nenhuma tradução encontrada.");
+            }
+        } else {
+            System.out.println("Nenhum verbo encontrado.");
+        }
         
-        Usuario u = new Usuario();
+        /*Usuario u = new Usuario();
         u.setNome("Thiago");
         u.setSobrenome("Ferreira");
         u.setEmail("thiago@gmail.com");
         u.setSenha("1234");
 
-        new UsuarioDAO().cadastroUsuario(u);
-
-        // Lógica de recuperação e validação do verbo em inglês
-        VerboDAO verboDAO = new VerboDAO();
-        Verbo verbo = verboDAO.getVerboAleatorio();
-
-        if (verbo != null) {
-            System.out.println("Verbo em inglês: " + verbo.getVerbo());
-
-            Scanner scanner = new Scanner(System.in);
-            System.out.print("Digite a tradução: ");
-            String respostaUsuario = scanner.nextLine();
-
-            boolean estaCerto = verboDAO.validarTraducao(verbo.getVerbo(), respostaUsuario);
-
-            if (estaCerto) {
-                System.out.println("Tradução correta!");
-            } else {
-                System.out.println("Tradução incorreta. Tente novamente.");
-            }
-
-            scanner.close();
-        } 
-        else {
-            System.out.println("Nenhum verbo encontrado no banco de dados.");
-            
-        }
-
+        new UsuarioDAO().cadastroUsuario(u);*/
     }
 }
