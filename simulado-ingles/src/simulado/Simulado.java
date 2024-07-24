@@ -28,7 +28,6 @@ public class Simulado {
             System.out.print("Digite a tradução: ");
             String respostaUsuario = scanner.nextLine();
 
-            System.out.println(verbo.getVerbo());
             boolean estaCerto = verboDAO.validarTraducao(verbo.getVerbo(), respostaUsuario);
 
             if (estaCerto) {
