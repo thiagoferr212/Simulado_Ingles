@@ -37,26 +37,28 @@ public class Simulado {
                 System.out.print("Digite a Tradução do verbo: ");
                 respostaUsuarioTraducao = scanner.nextLine();
                 System.out.println();
+                System.out.println("------------------------------------(RESPOSTAS)------------------------------------\n");
 
                 if (verboIrregular.getVerboPreteritoPerfeito().equals(respostaUsuarioPreteritoPerfeito)) {
-                    System.out.println("O Preterito Perfeito do verbo informado está correto!");
+                    System.out.println("O Preterito Perfeito do verbo informado está correto!\n");
                 } else {
-                    System.out.println("O verbo no Preterito perfeito que você informou está incorreto, o certo seria:");
-                        System.out.println("- " + verboIrregular.getVerboPreteritoPerfeito());
+                    System.out.print("O verbo no Preterito perfeito que você informou está incorreto, o certo seria: ");
+                    System.out.println(verboIrregular.getVerboPreteritoPerfeito() + "\n");
                 }
                 if (verboIrregular.getVerboParticipioPassado().equals(respostaUsuarioParticipioPassado)) {
-                    System.out.println("O Participio Passado do verbo informado está correto!");
+                    System.out.println("O Participio Passado do verbo informado está correto!\n");
                 } else {
-                    System.out.println("O verbo no Participio Passado que você informou está incorreto, o certo seria:");
-                        System.out.println("- " + verboIrregular.getVerboParticipioPassado());
+                    System.out.print("O verbo no Participio Passado que você informou está incorreto, o certo seria: ");
+                    System.out.println(verboIrregular.getVerboParticipioPassado() + "\n");
                 }
                 if (traducoes.contains(respostaUsuarioTraducao)) {
-                    System.out.println("A Tradução do verbo está correta!");
+                    System.out.println("A Tradução do verbo está correta!\n");
                 } else {
-                    System.out.println("A tradução de verbo que você informou está incorreta, o certo seria algumas destas opções:");
+                    System.out.println("A tradução de verbo que você informou está incorreta, o certo seria algumas destas opções: \n");
                     for (String traducao : traducoes) {
                         System.out.println("- " + traducao);
                     }
+                    System.out.println();
                 }
 
                 scanner.close();
