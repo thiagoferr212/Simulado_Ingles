@@ -11,16 +11,23 @@ public class Simulado {
         Verbo verbo  = verboDAO.buscarVerbo();
 
         if (verbo != null) {
-            System.out.println("Id Verbo: " + verbo.getIdVerbo());
-            System.out.println("Verbo: " + verbo.getVerbo());
-
             List<String> traducoes = verboDAO.buscarTraducao(verbo.getIdVerbo());
             Verbo verboIrregular = verboDAO.buscarVerbosIrregulares(verbo.getIdVerbo());
             
             if (verboIrregular != null) {
-                System.out.println("Preterito: " + verboIrregular.getVerboPreteritoPerfeito());
-                System.out.println("Participio: " + verboIrregular.getVerboParticipioPassado());
-                System.out.println();
+                System.out.println("------------------------------------(TESTE DE VERBOS IRREGULARES)------------------------------------\n");
+                
+                // Abaixo segue a lista de respostas, basta desativar o comentario
+
+                System.out.println("VERBO: " + "'" + verbo.getVerbo() + "'\n");
+                //System.out.println("Id Verbo: " + verbo.getIdVerbo());
+                //System.out.println("Preterito: " + verboIrregular.getVerboPreteritoPerfeito());
+                //System.out.println("Participio: " + verboIrregular.getVerboParticipioPassado());
+                //for (String traducao : traducoes) {
+                //    System.out.println("- " + traducao);
+                //}
+                //System.out.println();
+                
             } else {
                 System.out.println("Nenhum verbo irregular encontrado.");
             }

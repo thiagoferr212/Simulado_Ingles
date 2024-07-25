@@ -25,7 +25,6 @@ public class UsuarioDAO {
             ps.close();
 
         } catch (SQLException e) {
-            // TODO: handle exception
             e.printStackTrace();
         }
     }
