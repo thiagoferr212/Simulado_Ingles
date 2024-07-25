@@ -22,7 +22,6 @@ public class VerboDAO {
 
         try{
             connection = Conexao.getConexao();
-
             String sql = "SELECT id_verbo, verbo FROM t_verbo ORDER BY RAND() LIMIT 1";
             statement = connection.prepareStatement(sql);
             resultSet = statement.executeQuery();
@@ -73,7 +72,6 @@ public class VerboDAO {
             try {
                 if (resultSet != null) resultSet.close();
                 if (statement != null) statement.close();
-                if (connection != null) connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -81,5 +79,42 @@ public class VerboDAO {
 
         return verbosTraducao;
     }
+    
+    public Verbo buscarVerbosIrregulares(int idVerbo){
+        
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        Verbo verbosIrregulares = null;
 
+        try{
+            connection = Conexao.getConexao();
+            String sql = "SELECT verbo_preterito_perfeito, verbo_participio_passado " +
+                     "FROM t_verbo_participio_passado ps, t_verbo_preterito_perfeito pf " +
+                     "WHERE ps.id_verbo = pf.id_verbo AND ps.id_verbo = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, idVerbo);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                verbosIrregulares = new Verbo();
+                verbosIrregulares.setVerboPreteritoPerfeito(resultSet.getString("verbo_preterito_perfeito"));
+                verbosIrregulares.setVerboParticipioPassado(resultSet.getString("verbo_participio_passado"));
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return verbosIrregulares;
+    }
 }

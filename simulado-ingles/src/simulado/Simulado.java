@@ -15,26 +15,50 @@ public class Simulado {
             System.out.println("Verbo: " + verbo.getVerbo());
 
             List<String> traducoes = verboDAO.buscarTraducao(verbo.getIdVerbo());
-
-            // Exibe as traduções
-            if (!traducoes.isEmpty()) {
-                System.out.println("Traduções: ");
+            Verbo verboIrregular = verboDAO.buscarVerbosIrregulares(verbo.getIdVerbo());
             
-                // Solicita a tradução do usuário
+            if (verboIrregular != null) {
+                System.out.println("Preterito: " + verboIrregular.getVerboPreteritoPerfeito());
+                System.out.println("Participio: " + verboIrregular.getVerboParticipioPassado());
+                System.out.println();
+            } else {
+                System.out.println("Nenhum verbo irregular encontrado.");
+            }
+            if (!traducoes.isEmpty()) {
                 Scanner scanner = new Scanner(System.in);
-                System.out.print("Digite a tradução do verbo: ");
-                String respostaUsuario = scanner.nextLine();
+                String respostaUsuarioParticipioPassado, respostaUsuarioPreteritoPerfeito, respostaUsuarioTraducao;
+                
+                System.out.print("Digite o Preterito Perfeito do verbo: ");
+                respostaUsuarioPreteritoPerfeito = scanner.nextLine();
+                System.out.println();
+                System.out.print("Digite a Participio Passado do verbo: ");
+                respostaUsuarioParticipioPassado = scanner.nextLine();
+                System.out.println();
+                System.out.print("Digite a Tradução do verbo: ");
+                respostaUsuarioTraducao = scanner.nextLine();
+                System.out.println();
 
-                // Verifica se a resposta do usuário está correta
-                if (traducoes.contains(respostaUsuario)) {
-                    System.out.println("Correto! A tradução está correta.");
+                if (verboIrregular.getVerboPreteritoPerfeito().equals(respostaUsuarioPreteritoPerfeito)) {
+                    System.out.println("O Preterito Perfeito do verbo informado está correto!");
                 } else {
-                    System.out.println("Incorreto. As traduções corretas são:");
+                    System.out.println("O verbo no Preterito perfeito que você informou está incorreto, o certo seria:");
+                        System.out.println("- " + verboIrregular.getVerboPreteritoPerfeito());
+                }
+                if (verboIrregular.getVerboParticipioPassado().equals(respostaUsuarioParticipioPassado)) {
+                    System.out.println("O Participio Passado do verbo informado está correto!");
+                } else {
+                    System.out.println("O verbo no Participio Passado que você informou está incorreto, o certo seria:");
+                        System.out.println("- " + verboIrregular.getVerboParticipioPassado());
+                }
+                if (traducoes.contains(respostaUsuarioTraducao)) {
+                    System.out.println("A Tradução do verbo está correta!");
+                } else {
+                    System.out.println("A tradução de verbo que você informou está incorreta, o certo seria algumas destas opções:");
                     for (String traducao : traducoes) {
                         System.out.println("- " + traducao);
                     }
                 }
-                
+
                 scanner.close();
             } else {
                 System.out.println("Nenhuma tradução encontrada.");
@@ -42,13 +66,6 @@ public class Simulado {
         } else {
             System.out.println("Nenhum verbo encontrado.");
         }
-        
-        /*Usuario u = new Usuario();
-        u.setNome("Thiago");
-        u.setSobrenome("Ferreira");
-        u.setEmail("thiago@gmail.com");
-        u.setSenha("1234");
-
-        new UsuarioDAO().cadastroUsuario(u);*/
+              
     }
 }
